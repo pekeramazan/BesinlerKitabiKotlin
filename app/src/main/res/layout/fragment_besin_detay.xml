@@ -5,7 +5,7 @@
 <RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".BesinDetayFragment">
+    tools:context=".view.BesinDetayFragment">
 
     <ImageView
         android:id="@+id/besinImageView"
@@ -16,8 +16,8 @@
         android:scaleType="fitCenter"
         app:srcCompat="@drawable/ic_launcher_background"
         android:layout_margin="10dp">
-
     </ImageView>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -40,6 +40,7 @@
         android:layout_centerHorizontal="true"
         android:layout_margin="7dp">
     </TextView>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -70,9 +71,5 @@
         android:layout_centerHorizontal="true"
         android:layout_margin="7dp">
     </TextView>
-
-
-
-
 </RelativeLayout>
 </layout>

@@ -1,7 +1,8 @@
-package com.ramazanpeker.besinlerkitabikotlin
+package com.ramazanpeker.besinlerkitabikotlin.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.ramazanpeker.besinlerkitabikotlin.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
