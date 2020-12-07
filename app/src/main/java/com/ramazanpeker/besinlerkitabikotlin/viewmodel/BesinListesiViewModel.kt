@@ -3,24 +3,49 @@ package com.ramazanpeker.besinlerkitabikotlin.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.ramazanpeker.besinlerkitabikotlin.model.Besin
+import com.ramazanpeker.besinlerkitabikotlin.servis.BesinAPIServis
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.observers.DisposableSingleObserver
+import io.reactivex.schedulers.Schedulers
 
 class BesinListesiViewModel:ViewModel()
 {
     val besinler=MutableLiveData<List<Besin>>()
     val besinHataMesaji=MutableLiveData<Boolean>()
     val besinYukleniyor=MutableLiveData<Boolean>()
-    fun refreshData()
-    {
-        val muz=Besin("muz","100","10","1","2","www.test.com")
-        val cilek=Besin("çilek","200","8","7","2","www.test.com")
-        val elma=Besin("elma","300","10","6","4","www.test.com")
-        val armut=Besin("armut","100","20","1","5","www.test.com")
 
-        val besinListesi=arrayListOf<Besin>(muz,cilek,elma,armut)
+    private  val besinAPIServis=BesinAPIServis()
+    private val disposable=CompositeDisposable()
 
-        besinler.value=besinListesi
-        besinHataMesaji.value=false
-        besinYukleniyor.value=false
+    fun refreshData() {
+        verileriInternettenAl()
     }
+    private fun verileriInternettenAl(){
+        besinYukleniyor.value=true
+        disposable.add(
+                besinAPIServis.getData()
+                        .subscribeOn(Schedulers.newThread())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribeWith(object:DisposableSingleObserver<List<Besin>>(){
+                            override fun onSuccess(t: List<Besin>) {
+                                //başarılı olursak
+                                besinler.value=t
+                                besinHataMesaji.value=false
+                                besinYukleniyor.value=false
+                            }
+
+                            override fun onError(e: Throwable) {
+                                besinHataMesaji.value=true
+                                besinYukleniyor.value=false
+                                e.printStackTrace()
+
+                            }
+
+                        })
+        )
+
+    }
+
 
 }

@@ -15,6 +15,7 @@ import kotlinx.android.synthetic.main.fragment_besin_listesi.*
 
 
 class BesinListesiFragment : Fragment() {
+
 private lateinit var viewModel:BesinListesiViewModel
 private val recyclerBesinAdapter=BesinRecyclerAdapter(arrayListOf())
 
@@ -40,6 +41,14 @@ private val recyclerBesinAdapter=BesinRecyclerAdapter(arrayListOf())
 
         besinListRecycler.layoutManager=LinearLayoutManager(context)
         besinListRecycler.adapter=recyclerBesinAdapter
+        swipeRefreshLayout.setOnRefreshListener {
+            besinYukleniyor.visibility=View.VISIBLE
+            besinHataMesaji.visibility=View.GONE
+            besinListRecycler.visibility=View.GONE
+
+            viewModel.refreshData()
+            swipeRefreshLayout.isRefreshing=false
+        }
         observeLiveData()
 
     }
@@ -82,6 +91,5 @@ private val recyclerBesinAdapter=BesinRecyclerAdapter(arrayListOf())
             }
         })
     }
-
 
     }

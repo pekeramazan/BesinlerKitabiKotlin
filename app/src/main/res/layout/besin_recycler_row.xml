@@ -3,9 +3,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <LinearLayout
+        android:id="@+id/mainLinear"
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        >
 
         <ImageView
             android:id="@+id/imageView"
@@ -18,31 +20,30 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:layout_gravity="center"
             android:layout_weight="3"
             android:gravity="center"
-            android:layout_gravity="center">
+            android:orientation="vertical">
+
             <TextView
                 android:id="@+id/isim"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Besin İsmini "
                 android:layout_margin="5dp"
+                android:text="Besin İsmini "
                 android:textSize="20sp"
-                android:textStyle="bold">
-            </TextView>
+                android:textStyle="bold"></TextView>
+
             <TextView
                 android:id="@+id/kalori"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Besin Kalorisini Göstereceğiz"
                 android:layout_margin="5dp"
-                android:textSize="17sp">
-            </TextView>
+                android:text="Besin Kalorisini Göstereceğiz"
+                android:textSize="17sp"></TextView>
 
 
         </LinearLayout>
-
 
 
     </LinearLayout>
